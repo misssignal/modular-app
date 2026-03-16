@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>ModularApp.Ui</PackageId>
+    <Description>ModularApp shared UI component library for module developers</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Themes\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.12" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <ProjectReference Include="..\ModularApp.Sdk\ModularApp.Sdk.csproj" />
+  </ItemGroup>
+</Project>

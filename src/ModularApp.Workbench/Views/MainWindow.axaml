@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ModularApp.Workbench.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
+        x:Class="ModularApp.Workbench.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="CRATE Workbench"
+        Width="1200" Height="700">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+        <!-- Status bar at the bottom -->
+        <Border DockPanel.Dock="Bottom" Padding="8,4"
+                Background="{DynamicResource SystemChromeLowColor}">
+            <TextBlock Text="{Binding StatusText}" FontSize="12" Opacity="0.7" />
+        </Border>
+
+        <!-- Left navigation panel -->
+        <Border DockPanel.Dock="Left" Width="220"
+                Background="{DynamicResource SystemChromeLowColor}"
+                BorderBrush="{DynamicResource SystemBaseMediumLowColor}"
+                BorderThickness="0,0,1,0">
+            <DockPanel>
+                <!-- App header -->
+                <StackPanel DockPanel.Dock="Top" Margin="16,16,16,8">
+                    <TextBlock Text="CRATE" FontSize="22" FontWeight="Bold" />
+                    <TextBlock Text="Workbench" FontSize="12" Opacity="0.6" Margin="0,2,0,0" />
+                </StackPanel>
+
+                <Separator DockPanel.Dock="Top" Margin="16,8" />
+
+                <!-- Module list -->
+                <ListBox ItemsSource="{Binding Modules}"
+                         SelectedItem="{Binding SelectedModule}"
+                         Margin="4,0"
+                         Background="Transparent"
+                         CornerRadius="4">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ModuleNavItem">
+                            <StackPanel Orientation="Horizontal" Spacing="10" Margin="8,6">
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <!-- Right content panel -->
+        <Border Padding="0">
+            <ContentControl Content="{Binding ActiveModuleContent}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding}" />
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+        </Border>
+    </DockPanel>
+</Window>

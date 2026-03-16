@@ -1,0 +1,11 @@
+{
+  "Modules": {
+    "Directory": "./modules"
+  },
+  "Logging": {
+    "Default": "Information",
+    "ModuleOverrides": {
+      "modularapp.module.sample": "Debug"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Brand colors and shared design tokens -->
+    <Color x:Key="CratePrimaryColor">#0066CC</Color>
+    <Color x:Key="CrateAccentColor">#FF6600</Color>
+    <Color x:Key="CrateNavBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="CrateNavSelectedColor">#E0E0E0</Color>
+
+    <SolidColorBrush x:Key="CratePrimaryBrush" Color="{StaticResource CratePrimaryColor}" />
+    <SolidColorBrush x:Key="CrateAccentBrush" Color="{StaticResource CrateAccentColor}" />
+    <SolidColorBrush x:Key="CrateNavBackgroundBrush" Color="{StaticResource CrateNavBackgroundColor}" />
+    <SolidColorBrush x:Key="CrateNavSelectedBrush" Color="{StaticResource CrateNavSelectedColor}" />
+
+    <!-- Spacing tokens -->
+    <Thickness x:Key="CrateDefaultMargin">16</Thickness>
+    <Thickness x:Key="CrateCompactMargin">8</Thickness>
+    <x:Double x:Key="CrateNavWidth">220</x:Double>
+</ResourceDictionary>

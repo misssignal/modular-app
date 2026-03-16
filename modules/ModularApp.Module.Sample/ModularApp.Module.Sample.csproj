@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <PackageId>ModularApp.Module.Sample</PackageId>
+        <Description>Sample module demonstrating the ModularApp module contract</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\ModularApp.Sdk\ModularApp.Sdk.csproj" />
+        <ProjectReference Include="..\..\src\ModularApp.Ui\ModularApp.Ui.csproj" />
+        <PackageReference Include="Avalonia" Version="11.3.12" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="config\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <!-- Copy module output to Workbench's modules directory for local development -->
+    <Target Name="CopyToWorkbenchModules" AfterTargets="Build">
+        <PropertyGroup>
+            <WorkbenchModulesDir>$(SolutionDir)src\ModularApp.Workbench\bin\$(Configuration)\$(TargetFramework)\modules\modularapp.module.sample\</WorkbenchModulesDir>
+        </PropertyGroup>
+        <MakeDir Directories="$(WorkbenchModulesDir)" />
+        <MakeDir Directories="$(WorkbenchModulesDir)config\" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(WorkbenchModulesDir)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(TargetDir)ModularApp.Module.Sample.deps.json" DestinationFolder="$(WorkbenchModulesDir)" SkipUnchangedFiles="true" Condition="Exists('$(TargetDir)ModularApp.Module.Sample.deps.json')" />
+        <Copy SourceFiles="@(Content)" DestinationFolder="$(WorkbenchModulesDir)config\" SkipUnchangedFiles="true" />
+    </Target>
+</Project>

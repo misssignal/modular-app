@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ModularApp.Module.Sample.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:Class="ModularApp.Module.Sample.Views.SampleView"
+             x:DataType="vm:SampleViewModel">
+
+    <StackPanel Margin="24" Spacing="16">
+        <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="Bold" />
+        <TextBlock Text="This is a sample module loaded dynamically by the CRATE Workbench shell."
+                   TextWrapping="Wrap" Opacity="0.7" />
+
+        <Separator />
+
+        <TextBlock Text="Configuration" FontSize="16" FontWeight="SemiBold" />
+        <TextBlock Text="{Binding ConfigInfo}" />
+
+        <Button Content="Load Config" Command="{Binding LoadConfigCommand}" />
+    </StackPanel>
+</UserControl>
