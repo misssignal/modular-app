@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ModularApp.Workbench.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
+             x:Class="ModularApp.Workbench.Views.ShellSettingsView"
+             x:DataType="vm:ShellSettingsViewModel">
+
+    <ScrollViewer Padding="32,24">
+        <StackPanel Spacing="28" MaxWidth="640">
+
+            <!-- Header -->
+            <TextBlock Text="Settings" FontSize="24" FontWeight="Bold" />
+
+            <!-- Profile Section -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Profile" FontSize="16" FontWeight="SemiBold" />
+                <Separator />
+
+                <Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Token"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TokenMasked}"
+                               VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Bench Name"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BenchName}" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Lab / Area"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding LabArea}" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Module Source"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ModuleSourceUri}" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Username"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Username}"
+                               VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Hostname"
+                               VerticalAlignment="Center" Opacity="0.6" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Hostname}"
+                               VerticalAlignment="Center" />
+                </Grid>
+
+                <Button Content="Save Profile"
+                        Command="{Binding SaveProfileCommand}"
+                        HorizontalAlignment="Left"
+                        Padding="16,8" />
+
+                <TextBlock Text="{Binding StatusMessage}"
+                           FontSize="12" Opacity="0.6"
+                           IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+
+            <!-- Modules Section -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Loaded Modules" FontSize="16" FontWeight="SemiBold" />
+                <Separator />
+
+                <ItemsControl ItemsSource="{Binding LoadedModules}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ModuleInfoItem">
+                            <Border Padding="12,8" Margin="0,2"
+                                    CornerRadius="4"
+                                    Background="{DynamicResource SystemChromeLowColor}">
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}"
+                                               FontWeight="SemiBold" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Version}"
+                                               Opacity="0.5" Margin="12,0"
+                                               VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="2" Text="{Binding Status}"
+                                               Opacity="0.5" FontSize="11"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="No modules loaded."
+                           Opacity="0.4" FontStyle="Italic"
+                           IsVisible="{Binding !LoadedModules.Count}" />
+            </StackPanel>
+
+            <!-- Logging Section -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Logging" FontSize="16" FontWeight="SemiBold" />
+                <Separator />
+
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="Verbosity" VerticalAlignment="Center" Opacity="0.6" />
+                    <ComboBox ItemsSource="{Binding LogLevels}"
+                              SelectedItem="{Binding SelectedLogLevel}"
+                              Width="160" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- About Section -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="About" FontSize="16" FontWeight="SemiBold" />
+                <Separator />
+
+                <Grid ColumnDefinitions="140,*" RowDefinitions="Auto,Auto" RowSpacing="6">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Workbench Version"
+                               Opacity="0.6" />
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                               Text="{Binding WorkbenchVersion}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Engine Version"
+                               Opacity="0.6" />
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                               Text="{Binding EngineVersion}" />
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

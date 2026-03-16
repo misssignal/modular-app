@@ -17,6 +17,12 @@ public interface ICoreServices
     /// <summary>Identity and claims for the current user session.</summary>
     IIdentityProvider Identity { get; }
 
+    /// <summary>
+    /// Permission context scoped to the current module.
+    /// Use this to check capabilities — never role names.
+    /// </summary>
+    IPermissionContext Permissions { get; }
+
     /// <summary>Request the shell navigate to a different module by Id.</summary>
     void NavigateTo(string moduleId);
 }

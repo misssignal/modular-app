@@ -28,6 +28,8 @@ public class ModuleHost
 
     public ModuleHostState State { get; private set; } = ModuleHostState.Discovered;
     public string ModuleId => _discovery.ModuleId;
+    public string ModuleName => _discovery.ModuleName;
+    public string ModuleVersion => _discovery.ModuleVersion;
 
     public ModuleHost(
         ModuleDiscoveryResult discovery,

@@ -15,6 +15,9 @@ public interface IIdentityProvider
     /// <summary>Centrally managed roles assigned to this user.</summary>
     IReadOnlyList<string> Roles { get; }
 
+    /// <summary>Labs active in the current session (selected at setup).</summary>
+    IReadOnlyList<string> ActiveLabs { get; }
+
     /// <summary>Check whether the user has a specific claim.</summary>
     bool HasClaim(string claimType, string claimValue);
 }

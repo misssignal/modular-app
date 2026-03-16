@@ -7,5 +7,27 @@
     "ModuleOverrides": {
       "modularapp.module.sample": "Debug"
     }
-  }
+  },
+  "LabAreas": [
+    {
+      "Name": "VSCL",
+      "ModuleSourceUri": "https://artifactory.example.com/crate-modules/vscl"
+    },
+    {
+      "Name": "Emissions",
+      "ModuleSourceUri": "https://artifactory.example.com/crate-modules/emissions"
+    },
+    {
+      "Name": "Battery",
+      "ModuleSourceUri": "https://artifactory.example.com/crate-modules/battery"
+    },
+    {
+      "Name": "BSL",
+      "ModuleSourceUri": "https://artifactory.example.com/crate-modules/bsl"
+    },
+    {
+      "Name": "Development",
+      "ModuleSourceUri": "./modules"
+    }
+  ]
 }

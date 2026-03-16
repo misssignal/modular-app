@@ -34,6 +34,37 @@
 
                 <Separator DockPanel.Dock="Top" Margin="16,8" />
 
+                <!-- Bottom nav: Admin + Settings -->
+                <StackPanel DockPanel.Dock="Bottom" Margin="4,0,4,4" Spacing="2">
+                    <Separator Margin="12,4" />
+
+                    <!-- Admin button (only visible if user is lab admin) -->
+                    <Button Command="{Binding OpenAdminCommand}"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="12,8"
+                            CornerRadius="4"
+                            IsVisible="{Binding IsAdminVisible}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="🛡" FontSize="16" VerticalAlignment="Center" />
+                            <TextBlock Text="Admin" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding OpenSettingsCommand}"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="12,8"
+                            CornerRadius="4">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="⚙" FontSize="16" VerticalAlignment="Center" />
+                            <TextBlock Text="Settings" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
                 <!-- Module list -->
                 <ListBox ItemsSource="{Binding Modules}"
                          SelectedItem="{Binding SelectedModule}"

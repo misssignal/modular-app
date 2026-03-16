@@ -30,4 +30,9 @@ public class ModuleRegistry : IModuleRegistry
     {
         return _hosts.GetValueOrDefault(moduleId);
     }
+
+    public IReadOnlyList<ModuleHost> GetAllHosts()
+    {
+        return _hosts.Values.ToList().AsReadOnly();
+    }
 }
